@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <data>
+        <variable
+            name="toDoListener"
+            type="com.rps.todoreminder.bindingactionlisteners.ToDoActivityListener" />
+
+        <variable
+            name="todoList"
+            type="java.util.List&lt;com.rps.todoreminder.entity.ToDoEntity>" />
+
+        <variable
+            name="toDoListAdapter"
+            type="com.rps.todoreminder.adapter.ToDoListAdapter" />
+
+    </data>
+    <LinearLayout
+        android:id="@+id/parent_linear_layout_todofragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/tv_todo_hesding"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="My ToDo's"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_mytodo_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:adapter="@{toDoListAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:spanCount="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/create_todo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->toDoListener.onCreateToDoClick()}"
+                android:src="@drawable/white_add_icon" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
